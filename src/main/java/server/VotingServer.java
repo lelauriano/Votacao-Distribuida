@@ -1,3 +1,9 @@
+package server;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class VotingServer {
     private static final int PORT = 12345;
     private ServerSocket serverSocket;
@@ -10,6 +16,8 @@ public class VotingServer {
 
             while (running) {
                 Socket clientSocket = serverSocket.accept();
+                // Nota: Aqui ele usa a classe interna definida abaixo.
+                // Se você quisesse usar o arquivo ClientHandler.java externo, teria que remover a classe interna.
                 new Thread(new ClientHandler(clientSocket)).start();
             }
 
